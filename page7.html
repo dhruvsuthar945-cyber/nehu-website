@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Page 7 — Heart Fill & Shayari</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Great+Vibes&display=swap');
+  :root{
+    --pink1:#ffd2e0;
+    --pink2:#ffeaf3;
+    --accent:#ff4d88;
+    --soft:#fff6fb;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    min-height:100vh;
+    font-family:Poppins,system-ui;
+    background:linear-gradient(180deg,var(--pink2),var(--pink1));
+    color:#222;
+    overflow:auto;
+  }
+
+  .bg-decor{position:fixed;inset:0;pointer-events:none}
+  .bg-decor::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(ellipse at center,
+    rgba(255,255,255,0.4) 0%,
+    rgba(255,222,235,0.0) 40%,
+    rgba(0,0,0,0.03) 100%);
+  }
+
+  header{padding:34px 16px;text-align:center}
+  header h1{
+    margin:0;
+    font-size:28px;
+    color:#fff;
+    text-shadow:0 6px 18px rgba(0,0,0,0.12);
+    font-weight:700;
+  }
+  header p{
+    margin:10px 0 0;
+    color:red;
+    font-size:18px;
+    position:relative;
+    z-index:10;
+  }
+
+  .stage{
+    position:relative;
+    max-width:860px;
+    margin:30px auto;
+    padding:40px 20px 120px;
+    text-align:center;
+  }
+
+  .heart-wrap{
+    position:relative;
+    width:320px;
+    height:320px;
+    margin:24px auto;
+    cursor:pointer;
+    display:grid;
+    place-items:center;
+    z-index:12;
+  }
+
+  .heart-shadow{
+    position:absolute;
+    inset:auto 6px 18px 6px;
+    height:220px;
+    border-radius:50%;
+    filter:blur(22px);
+    opacity:0.12;
+    background:linear-gradient(90deg,var(--accent),#ff79a6);
+  }
+
+  .percent{
+    position:absolute;
+    z-index:20;
+    font-weight:700;
+    font-size:28px;
+    color:#fff;
+    text-shadow:0 2px 10px rgba(0,0,0,0.25);
+    pointer-events:none;
+    font-family:Great Vibes, cursive;
+  }
+
+  /* infinity line fixed */
+  #infinityLine{
+    position:relative;
+    z-index:15;
+    background:rgba(255,255,255,0.28);
+    padding:8px 14px;
+    border-radius:10px;
+    backdrop-filter:blur(6px);
+    margin-top:18px;
+    font-size:20px;
+    color:red;
+    opacity:0;
+    transition:opacity .6s ease;
+  }
+
+  /* SHAYARI FIXED BOX */
+  .shayari{
+    position:relative;
+    z-index:15;
+    background:rgba(255,255,255,0.25);
+    padding:22px 20px;
+    border-radius:14px;
+    backdrop-filter:blur(10px);
+    color:#000;
+    font-size:20px;
+    line-height:1.7;
+    max-width:640px;
+    margin:25px auto 0;
+    text-shadow:none;
+  }
+
+  /* Next button */
+  .next-btn{
+    margin:36px auto 0;
+    display:inline-block;
+    background:linear-gradient(90deg,#fff 0%,var(--soft)100%);
+    color:var(--accent);
+    padding:12px 28px;
+    border-radius:999px;
+    border:none;
+    font-weight:700;
+    font-size:18px;
+    box-shadow:0 8px 30px rgba(255,77,136,0.18);
+    cursor:pointer;
+    transition:transform .18s ease,box-shadow .18s ease;
+    z-index:20;
+    position:relative;
+  }
+  .next-btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 18px 40px rgba(255,77,136,0.22);
+  }
+
+  /* Falling emojis moved to back */
+  .float-icon{
+    position:fixed;
+    top:-40px;
+    font-size:22px;
+    opacity:0.9;
+    animation:fall linear infinite;
+    z-index:1;
+  }
+
+  @keyframes fall{
+    0%{transform:translateY(-10vh) rotate(0deg)}
+    100%{transform:translateY(120vh) rotate(360deg)}
+  }
+
+  @media(max-width:520px){
+    .heart-wrap{width:260px;height:260px}
+    .percent{font-size:22px}
+    .shayari{font-size:18px;padding:14px}
+  }
+</style>
+</head>
+
+<body>
+<div class="bg-decor"></div>
+
+<header>
+  <h1>You always ask me — How much do you love me?</h1>
+  <p>Today… check it yourself in my heart ❤</p>
+</header>
+
+<main class="stage">
+
+  <div class="heart-wrap" id="heartWrap" title="Click to fill">
+    <div class="heart-shadow"></div>
+
+    <svg viewBox="0 0 100 100" width="320" height="320" id="heartSVG" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <clipPath id="heartClip">
+          <path d="M50 86 L18 54 C6 42,6 28,18 20 C30 12,46 24,50 36 C54 24,70 12,82 20 C94 28,94 42,82 54 Z" />
+        </clipPath>
+        <linearGradient id="fillGrad" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0%" stop-color="#ff6aa8" />
+          <stop offset="100%" stop-color="#ff3b78" />
+        </linearGradient>
+      </defs>
+
+      <g transform="translate(0,4)">
+        <path d="M50 86 L18 54 C6 42,6 28,18 20 C30 12,46 24,50 36 C54 24,70 12,82 20 C94 28,94 42,82 54 Z"
+        fill="#ffeaf2" stroke="#ffd6e6" stroke-width="1.2" />
+
+        <g clip-path="url(#heartClip)" id="maskGroup">
+          <rect id="fillRect" x="0" y="100" width="100" height="100" fill="url(#fillGrad)" />
+        </g>
+
+        <path d="M24 38 C30 26,44 20,50 24"
+        stroke="rgba(255,255,255,0.22)" stroke-width="4" fill="none"
+        stroke-linecap="round" />
+      </g>
+
+      <path d="M50 86 L18 54 C6 42,6 28,18 20 C30 12,46 24,50 36 C54 24,70 12,82 20 C94 28,94 42,82 54 Z"
+      fill="none" stroke="#ff7aa6" stroke-width="1.2" />
+    </svg>
+
+    <div class="percent" id="percentText">0%</div>
+
+    <div id="infinityLine">My love for you is always infinity ∞</div>
+  </div>
+
+  <!-- SHAYARI BOX -->
+  <div class="shayari">
+
+    "मेरी परी"<br><br>
+    ये चाँदनी सा रूप तुम्हारा,
+    हर तारे से प्यारा है।<br>
+    इन आँखों का गहरा सागर,
+    दिल का नया किनारा है।<br>
+    ज़ुल्फ़ें काली घटाएँ जैसी,
+    मुखड़े पे जब मंडराती हैं।<br>
+    तुम्हारी उस मधुर हँसी से,
+    कलियाँ तक शरमाती हैं।<br>
+    सादगी में भी क़यामत हो तुम,
+    हुस्न की एक मूरत हो तुम।<br>
+    कैसे करूँ तारीफ़ तुम्हारी?
+    बस इतनी सी हक़ीक़त हो तुम।
+  </div>
+
+  <button class="next-btn" id="nextBtn">Next💕 →</button>
+
+</main>
+
+<script>
+const fillRect = document.getElementById('fillRect');
+const percentText = document.getElementById('percentText');
+const heartWrap = document.getElementById('heartWrap');
+
+document.getElementById('infinityLine').style.opacity = '1';
+
+function setFill(percent){
+  const height = 100 * (percent/100);
+  const y = 100 - height;
+  fillRect.setAttribute('y', String(y));
+  fillRect.setAttribute('height', String(height));
+  percentText.textContent = (percent<100? Math.floor(percent)+"%" : '100%');
+}
+
+setFill(0);
+
+let animInProgress = false;
+
+function animateFill(){
+  if(animInProgress) return;
+  animInProgress = true;
+  const duration = 2400;
+  const start = performance.now();
+
+  function tick(now){
+    const t = Math.min(1, (now - start) / duration);
+    const ease = 1 - Math.pow(1 - t, 3);
+    const percent = ease * 100;
+    setFill(percent);
+
+    if(t < 1){
+      requestAnimationFrame(tick);
+    } else {
+      percentText.textContent = '100%';
+      setTimeout(()=>{
+        percentText.style.transition = 'transform 400ms ease, opacity 400ms ease';
+        percentText.style.transform = 'scale(0.6)';
+        percentText.style.opacity = '0';
+        setTimeout(()=>{
+          percentText.textContent = '∞';
+          percentText.style.transform = 'scale(1)';
+          percentText.style.opacity = '1';
+          percentText.style.fontSize = '40px';
+          percentText.style.textShadow = '0 6px 22px rgba(255,60,120,0.28)';
+          animInProgress = false;
+        },420);
+      },300);
+    }
+  }
+  requestAnimationFrame(tick);
+}
+
+heartWrap.addEventListener('click', ()=>{
+  heartWrap.animate([
+    { transform: 'scale(1)' },
+    { transform: 'scale(1.06)' },
+    { transform: 'scale(1)' }
+  ], { duration: 700, easing: 'cubic-bezier(.2,.8,.2,1)' });
+
+  animateFill();
+});
+
+document.getElementById('nextBtn').addEventListener('click', ()=>{
+  window.location.href = 'page8.html';
+});
+
+const icons = ['💋','💗','🌸','✨','💕'];
+for(let i=0;i<18;i++){
+  const d = document.createElement('div');
+  d.className = 'float-icon';
+  d.style.left = Math.random()*100 + 'vw';
+  d.style.fontSize = (14 + Math.random()*18) + 'px';
+  d.style.top = (-10 - Math.random()*30) + 'vh';
+  d.style.opacity = 0.9 - Math.random()*0.5;
+  d.style.animationDuration = (6 + Math.random()*8) + 's';
+  d.style.animationDelay = (Math.random()*4) + 's';
+  d.textContent = icons[Math.floor(Math.random()*icons.length)];
+  document.body.appendChild(d);
+}
+
+heartWrap.tabIndex = 0;
+heartWrap.addEventListener('keydown', (e)=>{
+  if(e.key==='Enter' || e.key===' '){ e.preventDefault(); heartWrap.click(); }
+});
+</script>
+
+</body>
+</html>

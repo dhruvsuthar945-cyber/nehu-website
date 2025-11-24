@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Page 5 – Promises</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #0a0014;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+        overflow-y: auto;
+        height: auto;
+    }
+
+    .container {
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        color: #ff7bff;
+        text-shadow: 0 0 15px #ff00ff;
+    }
+
+    .promise-box {
+        background: rgba(255,255,255,0.1);
+        border-radius: 20px;
+        padding: 20px;
+        margin: 30px auto;
+        width: 85%;
+        max-width: 600px;
+        font-size: 20px;
+        line-height: 1.6;
+        opacity: 0;
+        transform: scale(0.7) translateY(50px);
+        animation: popUp 0.8s forwards;
+        box-shadow: 0 0 15px rgba(255,0,255,0.4);
+        backdrop-filter: blur(10px);
+    }
+
+    @keyframes popUp {
+        from {
+            opacity: 0;
+            transform: scale(0.7) translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+
+    /* ⭐ STAR RAIN */
+    .star {
+        position: fixed;
+        top: -10px;
+        color: white;
+        font-size: 10px;
+        opacity: 0.8;
+        animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(110vh);
+            opacity: 0;
+        }
+    }.next-btn {
+    margin-top: 25px;
+    padding: 12px 28px;
+    font-size: 18px;
+    color: white;
+    background: linear-gradient(45deg, #ff4e8a, #ff86c9);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    animation: heartBeat 1.8s infinite;
+    box-shadow: 0 0 15px rgba(255, 100, 180, 0.6);
+    transition: 0.3s ease;
+}
+
+.next-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 22px rgba(255, 100, 180, 0.9);
+    letter-spacing: 1px;
+}
+
+@keyframes heartBeat {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.08); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>💖 My Promises To You 💖</h1>
+
+    <div id="promiseContainer"></div>
+</div>
+
+<script>
+let promises = [
+    "I promise to love you in ways that feel like magic. ✨💞",
+    "I promise to hug your soul, not just your body. 🤍",
+    "I promise to be your sunshine on your darkest days. ☀️",
+    "I promise to keep choosing you, even when life gets tough. 🌙",
+    "I promise to protect your heart like a rare treasure. 🔐💗",
+    "I promise to be the calm to your storms. 🌧️❤️",
+    "I promise to make you feel loved, every second. ⏳💘",
+    "I promise to stay loyal, honest & forever yours. 🤝💞",
+    "I promise to grow with you & dream with you. 🌱✨",
+    "I promise to give you a future filled with warmth. 🏡💍❤️",
+    "I promise to hold your hand through every high and low. 🤝💗",
+"I promise you’ll never face anything alone — I’m always with you. 🌍❤️",
+"I promise to stand beside you even when the whole world stands against you. 🛡️💞",
+"I promise to listen to your silence and understand your unsaid feelings. 🌌🤍",
+"I promise to stay — not just today, but every single tomorrow. ♾️💘"
+
+];
+
+let container = document.getElementById("promiseContainer");
+let delay = 300;
+
+promises.forEach((line, index) => {
+    setTimeout(() => {
+        let box = document.createElement("div");
+        box.className = "promise-box";
+        box.style.animationDelay = "0s";
+        box.innerHTML = line;
+        container.appendChild(box);
+    }, index * 900);
+});
+
+// ⭐ STAR RAIN EFFECT
+setInterval(() => {
+    let star = document.createElement("div");
+    star.className = "star";
+    star.innerHTML = "✨";
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.animationDuration = (3 + Math.random() * 3) + "s";
+    document.body.appendChild(star);
+
+    setTimeout(() => {
+        star.remove();
+    }, 6000);
+}, 150);
+
+</script><button class="next-btn" onclick="goNext()">Next ❤️</button><script>
+function goNext() {
+    window.location.href = "page6.html";
+}
+</script>
+</body>
+</html>
+
+
+

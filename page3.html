@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Page 3</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #ffe6ec;
+        font-family: "Poppins", sans-serif;
+        text-align: center;
+    }
+
+    h2 {
+        margin-top: 30px;
+        color: #e91e63;
+        font-size: 35px;
+        font-weight: 600;
+    }
+
+    .line-box {
+        width: 80%;
+        margin: 20px auto;
+        padding: 18px;
+        background: white;
+        border-radius: 18px;
+        font-size: 22px;
+        color: #e91e63;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .line-box:hover {
+        transform: scale(1.03);
+    }
+
+    .hidden-text {
+        display: none;
+        margin-top: 10px;
+        font-size: 20px;
+        color: #444;
+    }
+
+    .heart {
+        color: red;
+        font-size: 26px;
+        margin-left: 8px;
+    }
+
+    button {
+        margin-top: 40px;
+        background: #e91e63;
+        padding: 12px 30px;
+        font-size: 22px;
+        border: none;
+        border-radius: 50px;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        transform: scale(1.1);
+    }
+</style>
+</head>
+
+<body>
+
+<h2>Tap each line one by one ❤️</h2>
+
+<div class="line-box" onclick="toggleText(1)">1. I want to tell you something <span class='heart'>❤️</span>
+    <div class="hidden-text" id="text1">You’re the most special person to me.</div>
+</div>
+
+<div class="line-box" onclick="toggleText(2)">2. Every moment with you… <span class='heart'>❤️</span>
+    <div class="hidden-text" id="text2">Feels like pure magic.</div>
+</div>
+
+<div class="line-box" onclick="toggleText(3)">3. Your smile… <span class='heart'>❤️</span>
+    <div class="hidden-text" id="text3">Is my favourite view in this world.</div>
+</div>
+
+<div class="line-box" onclick="toggleText(4)">4. Your voice… <span class='heart'>❤️</span>
+    <div class="hidden-text" id="text4">Feels like peace to my heart.</div>
+</div>
+
+<div class="line-box" onclick="toggleText(5)">5. Your presence… <span class='heart'>❤️</span>
+    <div class="hidden-text" id="text5">Makes everything better.</div>
+</div>
+
+<div class="line-box" onclick="toggleText(6)">6. Your eyes… <span class='heart'>❤️</span>
+    <div class="hidden-text" id="text6">Say more than words ever can.</div>
+</div>
+
+<div class="line-box" onclick="toggleText(7)">7. Your soul… <span class='heart'>❤️</span>
+    <div class="hidden-text" id="text7">Is the purest thing I know.</div>
+</div>
+
+<div class="line-box" onclick="toggleText(8)">8. Your touch… <span class='heart'>❤️</span>
+    <div class="hidden-text" id="text8">Feels like home.</div>
+</div>
+
+<div class="line-box" onclick="toggleText(9)">9. Your love… <span class='heart'>❤️</span>
+    <div class="hidden-text" id="text9">Is the sweetest blessing.</div>
+</div>
+
+<div class="line-box" onclick="toggleText(10)">10. And finally… <span class='heart'>❤️</span>
+    <div class="hidden-text" id="text10">I’m fully yours. Forever. ❤️</div>
+</div>
+
+<button onclick="location.href='page4.html'">Let's go ahead ❤️</button>
+
+<script>
+    function toggleText(num) {
+        let text = document.getElementById("text" + num);
+        if (text.style.display === "block") {
+            text.style.display = "none";
+        } else {
+            text.style.display = "block";
+        }
+    }
+</script>
+
+</body>
+</html>

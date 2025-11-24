@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Nehuuu — I Love You Forever</title>
+
+<style>
+/* ---------------- GLOBALS ---------------- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap');
+
+:root{
+  --accent:#ff1f7a;
+  --neon:#ff4da6;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  font-family:"Poppins",sans-serif;
+  background: radial-gradient(circle at top,
+    #ff0f6b 0%,
+    #cc0055 40%,
+    #990040 70%,
+    #66002b 100%);
+  color:#fff;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* Scroll layout */
+.wrapper{
+  width:100%;
+  max-width:900px;
+  margin:auto;
+  padding:30px 18px 60px;
+  position:relative;
+  z-index:5;
+}
+
+/* ---------------- TITLE ---------------- */
+.title{
+  font-family:"Great Vibes",cursive;
+  font-size:48px;
+  text-align:center;
+  color:#fff;
+  margin-top:20px;
+  margin-bottom:10px;
+  text-shadow:0 0 16px #ff2d7a, 0 0 32px #ff4da6;
+}
+
+.subtitle{
+  text-align:center;
+  color:#ffcce6;
+  font-size:16px;
+  margin-bottom:30px;
+  opacity:0.9;
+}
+
+/* ---------------- PHOTO CARD ---------------- */
+.photo-box{
+  width:100%;
+  max-width:420px;
+  height:420px;
+  margin:0 auto;
+  border-radius:20px;
+  overflow:hidden;
+  position:relative;
+  background:#222;
+  box-shadow:0 0 25px #ff4da6b3;
+}
+
+.photo-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform:scale(1);
+  transition:transform 10s ease;
+}
+
+.photo-box:hover img{
+  transform:scale(1.1);
+}
+
+/* Play Button */
+.play-btn{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:rgba(255,255,255,0.8);
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  box-shadow:0 0 20px #ff4da6;
+  transition:0.3s;
+}
+
+.play-btn:hover{
+  transform:translate(-50%,-50%) scale(1.1);
+}
+
+.play-btn svg{
+  width:34px;
+  fill:#cc0055;
+}
+
+/* ---------------- MIDDLE TEXT ---------------- */
+.middle{
+  margin-top:30px;
+  background:rgba(255,255,255,0.1);
+  padding:20px;
+  border-radius:18px;
+  backdrop-filter:blur(6px);
+  box-shadow:0 0 20px #ff1f7a50;
+  line-height:1.7;
+  font-size:18px;
+}
+
+/* ---------------- FINAL HEART AREA ---------------- */
+.final-section{
+  margin-top:50px;
+  text-align:center;
+}
+
+.pulse{
+  width:130px;
+  height:130px;
+  margin:auto;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: radial-gradient(circle,#ff4da6,#cc0055);
+  box-shadow:0 0 30px #ff4da6;
+  animation:pulse 1.8s infinite ease-in-out;
+}
+
+@keyframes pulse{
+  0%{transform:scale(0.9);}
+  50%{transform:scale(1.12);}
+  100%{transform:scale(0.9);}
+}
+
+.pulse span{
+  font-size:50px;
+  text-shadow:0 0 20px #fff;
+}
+
+.end-text{
+  margin-top:18px;
+  font-size:22px;
+  font-weight:600;
+  text-shadow:0 0 18px #ff8fc5;
+}
+
+.the-end{
+  font-size:16px;
+  margin-top:6px;
+  opacity:0.8;
+}
+
+/* ---------------- RAIN DECOR ---------------- */
+.rain{
+  position:fixed;
+  top:-5%;
+  font-size:20px;
+  animation:fall 8s linear infinite;
+  opacity:0.9;
+  z-index:1;
+}
+
+@keyframes fall{
+  0%{transform:translateY(-10vh) rotate(0deg);}
+  100%{transform:translateY(120vh) rotate(360deg);}
+}
+</style>
+
+</head>
+<body>
+
+<!-- Rain Effects -->
+<div id="rain"></div>
+
+<div class="wrapper">
+
+  <!-- Title -->
+  <div class="title">Nehuuu I love you forever… uuuummmmmuuuhhhh 💋😘</div>
+  <div class="subtitle">A final surprise… only for you ❤</div>
+
+  <!-- Photo + play button -->
+  <div class="photo-box">
+    <img src="dhruv.jpg" id="photo" alt="Our Photo">
+    <div class="play-btn" id="playMusic">
+      <svg viewBox="0 0 24 24"><path d="M3 22v-20l18 10-18 10z"/></svg>
+    </div>
+  </div>
+
+  <!-- Emotional Middle Text -->
+  <div class="middle">
+    <strong>Nehuuu…</strong> tum meri duniya ka sabse khubsurat ehsaas ho. <br><br>
+    Har din, har pal… tumhare saath ho kar hi poora lagta hai. <br><br>
+    Bas yuhi hamesha mere saath rehna… <strong>forever.</strong>
+  </div>
+
+  <!-- Final Heart -->
+  <div class="final-section">
+    <div class="pulse"><span>❤</span></div>
+
+    <div class="end-text">I Love You Forever — Nehuuu 💗</div>
+    <div class="the-end">THE END 💕</div>
+  </div>
+
+</div>
+
+<!-- Audio (replace with your song) -->
+<audio id="bgAudio" src="neha.mp3"></audio>
+
+<script>
+/* Rain Generator */
+const rainContainer = document.getElementById("rain");
+const symbols = ["💖","✨","⭐","💕","🌸"];
+
+for(let i=0;i<30;i++){
+  let span = document.createElement("span");
+  span.classList.add("rain");
+  span.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+  span.style.left = Math.random()*100 + "vw";
+  span.style.animationDuration = (6 + Math.random()*6) + "s";
+  span.style.fontSize = (16 + Math.random()*12) + "px";
+  rainContainer.appendChild(span);
+}
+
+/* Music Controls */
+const audio = document.getElementById("bgAudio");
+const playBtn = document.getElementById("playMusic");
+
+playBtn.addEventListener("click",()=>{
+  audio.play();
+  playBtn.style.opacity="0";
+  setTimeout(()=>{playBtn.style.display="none";},300);
+});
+</script>
+
+</body>
+</html>

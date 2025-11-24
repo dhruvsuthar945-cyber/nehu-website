@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Stylish Shine Text and Interactive Hearts</title>
+
+<style>
+  /* Pink Background */
+  body {
+    margin: 0;
+    padding: 0;
+    background: #ff69b4;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  /* Shiny Text */
+  .shiny-text {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #fff;
+    position: relative;
+    background: linear-gradient(90deg, #ff66cc, #ffffff99, #ff66cc);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 3s linear infinite;
+    margin: 30px auto;
+    width: fit-content;
+    text-align: center;
+    z-index: 10;
+    position: relative;
+  }
+
+  @keyframes shine {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* Rain Container */
+  .rain-container {
+    position: fixed;
+    top: 0; left: 0;
+    height: 100vh; width: 100vw;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .rain {
+    position: absolute;
+    top: -20px;
+    font-size: 12px;
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes fall {
+    to {
+      transform: translateY(110vh);
+    }
+  }
+
+  /* Stars & Heart Sprinkles */
+  .rain.star { color: #fff; }
+  .rain.heart { color: #ffadc6; }
+
+  /* Hearts Grid */
+  .hearts-container {
+    position: relative;
+    z-index: 10;
+    margin: 50px auto;
+    width: 90vw;
+    max-width: 900px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .big-heart {
+    width: 100px;
+    height: 90px;
+    cursor: pointer;
+    animation: blink 2s infinite;
+    color: #ff1452;
+    filter: drop-shadow(0 0 4px #ff5470);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    user-select: none;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  input[type="radio"] { display: none; }
+
+  /* Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
+  }
+
+  .modal.active { display: flex; }
+
+  .modal img {
+    max-width: 90vw;
+    max-height: 80vh;
+    border-radius: 20px;
+    box-shadow: 0 0 20px #ff69b4;
+  }
+
+  .caption {
+    margin-top: 15px;
+    color: #ffaddd;
+    font-size: 1.2rem;
+    font-style: italic;
+    text-align: center;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    color: #ffb6c1;
+    cursor: pointer;
+  }
+
+  /* Continue Button */
+  .next-btn-wrapper {
+    text-align: center;
+    margin-top: 40px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .next-btn {
+    background: #fff;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ff0066;
+    box-shadow: 0 0 20px #ff8fb8;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .next-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 25px #ffc3e0;
+  }
+
+</style>
+</head>
+
+<body>
+
+<!-- Shiny Text -->
+<div class="shiny-text">When you are with me, every moment becomes memorable</div>
+
+<!-- Rain -->
+<div class="rain-container"></div>
+
+<!-- Big Hearts -->
+<div class="hearts-container">
+  <label class="big-heart" for="heart1">❤ <input type="radio" id="heart1" name="heart-select"></label>
+  <label class="big-heart" for="heart2">❤ <input type="radio" id="heart2" name="heart-select"></label>
+  <label class="big-heart" for="heart3">❤ <input type="radio" id="heart3" name="heart-select"></label>
+  <label class="big-heart" for="heart4">❤ <input type="radio" id="heart4" name="heart-select"></label>
+  <label class="big-heart" for="heart5">❤ <input type="radio" id="heart5" name="heart-select"></label>
+  <label class="big-heart" for="heart6">❤ <input type="radio" id="heart6" name="heart-select"></label>
+</div>
+
+<!-- Continue Button -->
+<div class="next-btn-wrapper">
+  <button class="next-btn" onclick="goNext()">Continue Sweetheart 😘</button>
+</div>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+  <button class="close-btn">×</button>
+  <img id="modal-image" src="" alt="">
+  <div id="modal-caption" class="caption"></div>
+  <audio id="modal-audio" controls></audio>
+</div>
+
+<script>
+/* Rain Animation */
+const rainContainer = document.querySelector(".rain-container");
+const symbols = ["⭐", "💖"];
+for (let i = 0; i < 40; i++) {
+  const span = document.createElement("span");
+  span.classList.add("rain");
+  span.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+  span.style.left = Math.random() * 100 + "vw";
+  span.style.animationDuration = Math.random() * 5 + 5 + "s";
+  span.style.top = "-10vh";
+  span.classList.add(span.textContent === "⭐" ? "star" : "heart");
+  rainContainer.appendChild(span);
+}
+
+/* Heart Data */
+const heartData = {
+  heart1: { img: "photo1.jpg", audio: "song1.mp3", caption: "Every moment with you shines bright!" },
+  heart2: { img: "photo2.jpg", audio: "song2.mp3", caption: "Memories that last forever." },
+  heart3: { img: "photo3.jpg", audio: "song3.mp3", caption: "Love and joy combined." },
+  heart4: { img: "photo4.jpg", audio: "song4.mp3", caption: "Heartfelt moments captured." },
+  heart5: { img: "photo5.jpg", audio: "song5.mp3", caption: "Together in happiness." },
+  heart6: { img: "photo6.jpg", audio: "song6.mp3", caption: "Cherished memories always." }
+};
+
+/* Modal Controls */
+const modal = document.getElementById("modal");
+const modalImage = document.getElementById("modal-image");
+const modalAudio = document.getElementById("modal-audio");
+const modalCaption = document.getElementById("modal-caption");
+const closeBtn = document.querySelector(".close-btn");
+
+document.querySelectorAll("input[type=radio]").forEach(radio => {
+  radio.addEventListener("change", () => {
+    const data = heartData[radio.id];
+    modalImage.src = data.img;
+    modalAudio.src = data.audio;
+    modalCaption.textContent = data.caption;
+    modalAudio.play();
+    modal.classList.add("active");
+  });
+});
+
+/* Close Modal */
+closeBtn.addEventListener("click", () => {
+  modal.classList.remove("active");
+  modalAudio.pause();
+  modalAudio.currentTime = 0;
+  document.querySelectorAll("input[type=radio]").forEach(r => r.checked = false);
+});
+
+modal.addEventListener("click", e => {
+  if (e.target === modal) closeBtn.click();
+});
+
+/* Next Page Button */
+function goNext() {
+  window.location.href = "page2.html"; // apna next page name daal dena
+}
+</script>
+
+</body>
+</html>

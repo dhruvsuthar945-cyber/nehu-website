@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>My Heart For You — Letter</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg1: #ff7bb0;
+    --bg2: #ff2e63;
+    --glass: rgba(255,255,255,0.12);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,0.06), transparent),
+                linear-gradient(135deg, var(--bg1), var(--bg2));
+    overflow: hidden;
+    color: #fff;
+    text-align: center;
+  }
+
+  /* Falling hearts */
+  @keyframes fall {
+    0% { transform: translateY(-20vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(120vh) rotate(360deg); opacity: 0; }
+  }
+  .fall {
+    position: absolute;
+    top: -10vh;
+    pointer-events: none;
+    filter: drop-shadow(0 0 8px rgba(255,150,180,0.9));
+  }
+
+  /* Corner shining hearts */
+  @keyframes shine {
+    0%,100% { transform: scale(1); opacity: 1; filter: drop-shadow(0 0 18px #fff); }
+    50% { transform: scale(1.18); opacity: 0.6; filter: drop-shadow(0 0 8px #ff9ec6); }
+  }
+  .corner {
+    position: absolute;
+    font-size: 48px;
+    animation: shine 2.2s infinite ease-in-out;
+    user-select: none;
+  }
+  .tl { left: 18px; top: 18px; }
+  .tr { right: 18px; top: 18px; animation-delay: .4s; }
+  .bl { left: 18px; bottom: 18px; animation-delay: .8s; }
+  .br { right: 18px; bottom: 18px; animation-delay: 1.2s; }
+
+  /* Center card */
+  .card {
+    width: min(860px, 92vw);
+    padding: 38px;
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+    box-shadow: 0 20px 60px rgba(255,0,120,0.12);
+    backdrop-filter: blur(8px);
+    position: relative;
+    z-index: 3;
+  }
+
+  .title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 48px;
+    margin: 6px 0 12px;
+    letter-spacing: .5px;
+    text-shadow: 0 6px 30px rgba(255,120,160,0.35);
+  }
+
+  /* Big clickable heart */
+  .big-heart {
+    font-size: 120px;
+    line-height: 1;
+    color: #ff0f6b;
+    cursor: pointer;
+    display: inline-block;
+    transition: transform .28s ease, filter .28s ease;
+    filter: drop-shadow(0 12px 40px rgba(255,60,120,0.4));
+    user-select: none;
+  }
+  .big-heart:hover { transform: scale(1.08) translateY(-6px); filter: drop-shadow(0 18px 58px rgba(255,80,140,0.55)); }
+
+  /* Heart open animation */
+  .opening {
+    animation: openHeart .6s ease forwards;
+  }
+  @keyframes openHeart {
+    0% { transform: scale(1); opacity: 1; }
+    60% { transform: scale(.85); opacity: .9; }
+    100% { transform: scale(.4) translateY(-20px); opacity: 0; }
+  }
+
+  /* Letter box */
+  .letter {
+    margin-top: 18px;
+    display: none;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    padding: 22px 26px;
+    border-radius: 16px;
+    background: var(--glass);
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.25);
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .letter.show {
+    display: block;
+    animation: letterIn .6s cubic-bezier(.2,.9,.3,1) forwards;
+  }
+  @keyframes letterIn {
+    from { transform: translateY(8px) scale(.98); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+  }
+
+  /* Let's go ahead button */
+  .next-btn {
+    display: none;
+    margin-top: 20px;
+    padding: 12px 28px;
+    font-size: 1.05rem;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(90deg,#ff4b8a,#ff1958);
+    color: white;
+    box-shadow: 0 10px 30px rgba(255,30,100,0.28);
+    transition: transform .16s ease;
+  }
+  .next-btn:hover { transform: translateY(-4px) scale(1.02); }
+
+  .underline {
+    height: 6px;
+    width: 120px;
+    margin: 10px auto 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.18), rgba(255,255,255,0.05));
+    box-shadow: 0 6px 18px rgba(255,80,140,0.08);
+  }
+
+  @media (max-width:520px){
+    .big-heart { font-size: 96px; }
+    .title { font-size: 36px; }
+    .letter { font-size: 1rem; padding: 18px; }
+  }
+</style>
+</head>
+
+<body>
+
+  <!-- falling hearts -->
+  <script>
+    for (let i=0;i<28;i++){
+      const h=document.createElement('div');
+      h.className='fall';
+      h.style.left = Math.random()*100 + '%';
+      h.style.fontSize = (14 + Math.random()*28) + 'px';
+      h.style.animationDuration = (5 + Math.random()*8) + 's';
+      h.style.animationDelay = (Math.random()*6) + 's';
+      h.innerHTML = ['❤','💖','💕','💗'][Math.floor(Math.random()*4)];
+      h.style.opacity = 0.95;
+      h.style.top = '-10vh';
+      h.style.position = 'absolute';
+      h.style.pointerEvents = 'none';
+      h.style.animationName = 'fall';
+      document.body.appendChild(h);
+    }
+  </script>
+
+  <!-- corner shining hearts -->
+  <div class="corner tl">💖</div>
+  <div class="corner tr">💗</div>
+  <div class="corner bl">💘</div>
+  <div class="corner br">💕</div>
+
+  <div class="card" role="main" aria-live="polite">
+    <div class="title">Open My Heart</div>
+
+    <div id="heartBtn" class="big-heart" aria-label="Open heart" title="Click to open">
+      ❤️
+    </div>
+
+    <div id="letter" class="letter" aria-hidden="true"></div>
+
+    <div class="underline" aria-hidden="true"></div>
+
+    <div>
+      <button id="nextBtn" class="next-btn" onclick="location.href='page3.html'">Let's go ahead →</button>
+    </div>
+  </div>
+
+<script>
+  // Clean + simple + beautiful paragraph (new font)
+  const loveParagraph =
+  "Tum mile toh zindagi ne pehli baar khud ko poora mehsoos kiya 💫 Tumhari hasi meri rooh ko sukoon deti hai, aur har din tumhare saath ek nayi kahani jaisa lagta hai 🤍 Main tumhaare saath hoon — har khushi, har dukh mein 🌟 Tum meri life ka sabse khubsurat hissa ho; tumhare bina har cheez adhoori lagti hai 🥺 Tum ho toh duniya thodi zyada acchi lagti hai, aur tumhari aankhon mein mujhe ek alag hi ghar milta hai 🏡 Main tumhe har kal, har lamhe mein chahunga — tum sirf mere dil ka nahi, meri puri duniya ka pyaar ho. ❤️";
+
+  const heartBtn = document.getElementById('heartBtn');
+  const letter = document.getElementById('letter');
+  const nextBtn = document.getElementById('nextBtn');
+
+  let opened = false;
+
+  heartBtn.addEventListener('click', () => {
+    if (opened) return;
+    opened = true;
+
+    heartBtn.classList.add('opening');
+
+    setTimeout(() => {
+      // SIMPLE, CLEAN FONT (Poppins)
+      letter.innerHTML =
+        `<span style="font-family:'Poppins', sans-serif; font-weight:300; font-size:1.15rem; display:block; margin-bottom:10px; color:#fff;">${loveParagraph}</span>`;
+      letter.classList.add('show');
+      letter.setAttribute('aria-hidden','false');
+
+      setTimeout(()=> {
+        nextBtn.style.display = 'inline-block';
+      }, 450);
+    }, 420);
+  });
+
+  heartBtn.tabIndex = 0;
+  heartBtn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      heartBtn.click();
+    }
+  });
+</script>
+
+</body>
+</html>

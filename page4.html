@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page 4 - Emotional Letter</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #ffdde8;
+        font-family: 'Poppins', sans-serif;
+        overflow: hidden;
+    }
+
+    /* Stylish Heading */
+    .heading {
+        text-align: center;
+        font-size: 45px;
+        margin-top: 40px;
+        font-weight: 700;
+        font-family: 'Great Vibes', cursive;
+        color: #ff2a75;
+        text-shadow: 0 0 15px #ff6aa3, 0 0 25px #ff2a75;
+        animation: glow 2s infinite alternate ease-in-out;
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 5px #ff2a75; }
+        to { text-shadow: 0 0 25px #ff6aa3; }
+    }
+
+    /* Typewriter Effect */
+    .typewriter-box {
+        width: 80%;
+        margin: 50px auto;
+        padding: 30px;
+        background: #ffffffdd;
+        border-radius: 20px;
+        box-shadow: 0 0 20px #ff99c7;
+        font-size: 22px;
+        line-height: 35px;
+        font-weight: 500;
+        color: #ff1369;
+        border: 3px solid #ff6faf;
+        min-height: 260px;
+    }
+
+    .text { display: inline; }
+
+    /* I LOVE YOU Rain */
+    .rain {
+        position: fixed;
+        top: -10px;
+        font-size: 22px;
+        color: #ff2f75;
+        animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(-50px); opacity: 1; }
+        100% { transform: translateY(110vh); opacity: 0; }
+    }.next-btn {
+  margin-top: 40px;
+}
+
+.next-btn button {
+  padding: 15px 40px;
+  font-size: 1.5em;
+  border: none;
+  border-radius: 40px;
+  background: #ff4fa8;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 15px #ff8dcc;
+  transition: 0.3s;
+  font-family: 'Poppins', sans-serif;
+}
+
+.next-btn button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px #ffb3dd;
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="heading">My Feelings For You ❤️</div>
+
+<div class="typewriter-box">
+    <span id="typewriter-text" class="text"></span>
+</div>
+
+<script>
+// Typewriter Effect
+const text = "Kabhi kabhi main sochta hoon ki zindagi ne mujhe sabse bada gift kya diya… aur har baar jawab sirf tum hoti ho ❤️✨. Tum mere har din ki khushi ho 😊, meri har tension ka end ho 💖, aur meri har dua ka sach ho 🤲💞. Mere liye tum koi “choice” nahi ho… tum meri zaroorat ho, meri aadat ho, meri zindagi ho 💓. Tumhare bina main adhoora tha, hoon, aur rahunga — kyunki meri poori duniya tumse shuru hoti hai aur tum par hi khatam 🌍❤️. Mujhe tumse sirf pyaar nahi… ek sukoon milta hai, ek ghar jaisi feeling milti hai 🏡💗. Mujhe pata hai ki hum dono ka safar lamba, khoobsurat aur hamesha wala hai… kyunki tum sirf meri love nahi, meri life partner ho 💍❤️. Aur main hamesha, har janam, har pal tumhare saath hi rehna chahta hoon 🤞❤️✨.❤️";
+let index = 0;
+
+function typeWriter() {
+    if (index < text.length) {
+        document.getElementById("typewriter-text").innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeWriter, 55);
+    }
+}
+
+window.onload = () => {
+    typeWriter();
+    startRain();
+};
+
+// I LOVE YOU Rain
+function startRain() {
+    const symbols = ["I Love You ❤️", "❤️", "💖", "💝", "😘", "💗"];    
+    for (let i = 0; i < 25; i++) {
+        let rainDrop = document.createElement("div");
+        rainDrop.className = "rain";
+        rainDrop.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+        rainDrop.style.left = (Math.random() * 50) + "px"; // left side
+        rainDrop.style.animationDuration = (3 + Math.random() * 4) + "s";
+        document.body.appendChild(rainDrop);
+    }
+
+    for (let i = 0; i < 25; i++) {
+        let rainDrop = document.createElement("div");
+        rainDrop.className = "rain";
+        rainDrop.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+        rainDrop.style.right = (Math.random() * 50) + "px"; // right side
+        rainDrop.style.animationDuration = (3 + Math.random() * 4) + "s";
+        rainDrop.style.left = "auto";
+        document.body.appendChild(rainDrop);
+    }
+}
+</script><div class="next-btn">
+  <button onclick="window.location.href='page5.html'">Continue Baby 💖</button>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Special Note For You</title>
+
+<!-- Romantic Stylish Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+  /* Floating Hearts Animation */
+  @keyframes floatingHearts {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-300px) translateX(80px) rotate(360deg); opacity: 0; }
+  }
+
+  /* Blinking Shine Heart */
+  @keyframes blinkHeart {
+    0%, 100% { opacity: 1; filter: drop-shadow(0 0 25px #fff); }
+    50% { opacity: 0.3; filter: drop-shadow(0 0 5px #ffadc8); }
+  }
+
+  /* Kiss Animation (TOP → DOWN) */
+  @keyframes moveKiss {
+    0% { top: -10%; opacity: 1; }
+    100% { top: 110%; opacity: 0; }
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #ff6fa8, #ff2e63);
+    font-family: 'Poppins', sans-serif;
+    color: #fff0f8;
+    text-align: center;
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 5em;
+    margin-top: 40px;
+    color: #ffffff;
+    text-shadow: 0 0 25px #ff3b7a;
+    position: relative;
+  }
+
+  /* Shiny blinking heart after title */
+  h1::after {
+    content: " ❤";
+    font-size: 0.8em;
+    animation: blinkHeart 1.5s infinite;
+    margin-left: 10px;
+  }
+
+  p {
+    font-size: 1.7em;
+    margin: 20px auto 50px;
+    width: 80%;
+    line-height: 1.6;
+    text-shadow: 0 0 10px #ffc0d1;
+  }
+
+  button {
+    padding: 15px 50px;
+    font-size: 1.6em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    background: #ff1e56;
+    color: white;
+    box-shadow: 0 10px 25px rgba(255, 30, 86, 0.7);
+    transition: 0.3s;
+  }
+
+  button:hover {
+    transform: scale(1.15);
+    box-shadow: 0 18px 40px rgba(255, 30, 86, 1);
+  }
+
+  /* Large Blink Hearts */
+  .big-heart {
+    position: absolute;
+    font-size: 6em;
+    color: #ff0c5f;
+    animation: blinkHeart 2s infinite;
+    filter: drop-shadow(0 0 20px #ff5b8f);
+  }
+
+  .big-heart.left { top: 20%; left: 5%; }
+  .big-heart.right { top: 25%; right: 5%; animation-delay: 1s; }
+
+  /* Floating small hearts */
+  .heart {
+    position: absolute;
+    font-size: 32px;
+    animation: floatingHearts 6s infinite ease-in;
+    color: #ff4d7e;
+    filter: drop-shadow(0 0 6px #ff92b6);
+  }
+
+  /* Falling kisses */
+  .kiss {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3em;
+    animation: moveKiss 8s linear infinite;
+    filter: drop-shadow(0 0 10px #ff7aa8);
+  }
+</style>
+</head>
+
+<body>
+
+<h1>Special Note For You</h1>
+
+<p>
+  Today is a very special day...<br/>
+  It marks the beginning of our love journey.<br/>
+  I made something just for you...<br/>
+  My heart is waiting inside...<br/>
+  Click the button below to open it. ❤️
+</p>
+
+<button onclick="window.location.href='nextpage.html'">Open My Heart</button>
+
+<!-- Big Hearts -->
+<div class="big-heart left">❤</div>
+<div class="big-heart right">❤</div>
+
+<!-- 50 Floating Hearts -->
+<script>
+  for (let i = 0; i < 50; i++) {
+    let h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = ["❤","💖","💕","💗","💘","💞"][Math.floor(Math.random()*6)];
+    h.style.left = Math.random() * 100 + "%";
+    h.style.top = "100%";
+    h.style.animationDelay = (Math.random()*5) + "s";
+    h.style.fontSize = (Math.random()*20 + 20) + "px";
+    document.body.appendChild(h);
+  }
+
+  /* 10 Falling Kisses */
+  for (let k = 0; k < 10; k++) {
+    let kiss = document.createElement("div");
+    kiss.className = "kiss";
+    kiss.innerHTML = "💋";
+
+    kiss.style.left = (10 + Math.random()*80) + "%"; 
+    kiss.style.fontSize = (40 + Math.random()*20) + "px"; 
+    kiss.style.animationDelay = (Math.random()*8) + "s";
+
+    document.body.appendChild(kiss);
+  }
+</script>
+
+</body>
+</html>
